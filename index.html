@@ -540,4 +540,66 @@ The App will be uploaded to the platform soon
 
 </body>
 
+
+
+
+ <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
+  <script type="text/javascript">
+    (function() {
+      var firebaseConfig = {
+        apiKey: "AIzaSyDkSrYYvFWILqdDoR7EZXEHYnYaRHE5sRc",
+        authDomain: "test-project-1da79.firebaseapp.com",
+        databaseURL: "https://test-project-1da79.firebaseio.com",
+        projectId: "test-project-1da79",
+        storageBucket: "test-project-1da79.appspot.com",
+        messagingSenderId: "1000904167202",
+        appId: "1:1000904167202:web:4be8aeda422da522"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      var push_to_firebase = function(data){
+        alert("Thanks for sending a message. I'll try and get back to you as soon as possible.")
+        var db = firebase.firestore();
+
+        db.collection("messages").add({
+            name: data["name"],
+            email: data["email"],
+            message: data["msg"],
+            timestamp: Date.now()
+        })
+        .then(function(docRef) {
+            console.log("Message sent, ID: ", docRef.id);
+            location.reload();
+        })
+        .catch(function(error) {
+            console.error("Message could not be sent: ", error);
+        });
+      }
+
+      var contact_submit = function(){
+        var name = document.getElementById("name");
+        var email = document.getElementById("email");
+        var msg = document.getElementById("message");
+
+        var data = {
+          "name": name.value,
+          "email": email.value,
+          "msg": msg.value
+        }
+        push_to_firebase(data);
+
+      }
+
+      document.getElementById("submit_msg").addEventListener("click", contact_submit);
+    })();
+  </script>
+
+
+
+
+
+
+
 </html>
