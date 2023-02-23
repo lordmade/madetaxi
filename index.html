@@ -120,11 +120,11 @@
                 Get A Taxi Now
               </h4>
               <form action="">
-                <input type="text" placeholder="Car Type">
-                <input type="text" placeholder="Pick Up Location">
-                <input type="text" placeholder="Drop Location">
+                <input type="text"id="car"name="car" placeholder="Car Type">
+                <input type="text" id="pick"name="pick"placeholder="Pick Up Location">
+                <input type="text" id="drop"name="drop"placeholder="Drop Location">
                 <div class="btm_input">
-                  <input type="text" placeholder="Your Phone Number">
+                  <input type="text" id="number"name="number"placeholder="Your Phone Number">
                   <button>Book Now</button>
                 </div>
               </form>
@@ -548,13 +548,12 @@ The App will be uploaded to the platform soon
   <script type="text/javascript">
     (function() {
       var firebaseConfig = {
-        apiKey: "AIzaSyDkSrYYvFWILqdDoR7EZXEHYnYaRHE5sRc",
-        authDomain: "test-project-1da79.firebaseapp.com",
-        databaseURL: "https://test-project-1da79.firebaseio.com",
-        projectId: "test-project-1da79",
-        storageBucket: "test-project-1da79.appspot.com",
-        messagingSenderId: "1000904167202",
-        appId: "1:1000904167202:web:4be8aeda422da522"
+        apiKey: "AIzaSyCGE_9QlCRaR3MMEWLFZ2UFfTskangPUzc",
+    authDomain: "taxufy.firebaseapp.com",
+    projectId: "taxufy",
+    storageBucket: "taxufy.appspot.com",
+    messagingSenderId: "967402882149",
+    appId: "1:967402882149:web:7a248be0da272580d7328c"
       };
 
       firebase.initializeApp(firebaseConfig);
@@ -564,9 +563,10 @@ The App will be uploaded to the platform soon
         var db = firebase.firestore();
 
         db.collection("messages").add({
-            name: data["name"],
-            email: data["email"],
-            message: data["msg"],
+            car:["car"],
+            pick:["pick"],
+            drop:["drop"],
+          number:["number"],
             timestamp: Date.now()
         })
         .then(function(docRef) {
@@ -579,14 +579,20 @@ The App will be uploaded to the platform soon
       }
 
       var contact_submit = function(){
-        var name = document.getElementById("name");
-        var email = document.getElementById("email");
-        var msg = document.getElementById("message");
+        var car = document.getElementById("car");
+        var pick = document.getElementById("pick");
+        var drop = document.getElementById("drop");
+        var number = document.getElementById("number");
+
+
 
         var data = {
-          "name": name.value,
-          "email": email.value,
-          "msg": msg.value
+          "car": car.value,
+          "pick": pick.value,
+          "drop": drop.value,
+          "number": number.value,
+        
+        
         }
         push_to_firebase(data);
 
