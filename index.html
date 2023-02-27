@@ -702,7 +702,7 @@
           name: data["name"],
           email: data["email"],
           message: data["msg"],
-          surname: data["surname"],
+         
           
           timestamp: Date.now()
       })
@@ -719,14 +719,14 @@
        var name = document.getElementById("name");
       var email = document.getElementById("email");
       var msg = document.getElementById("message");
-      var surname = document.getElementById("surname");
+    
 
 
       var data = {
         "name": name.value,
         "email": email.value,
         "msg": msg.value,
-        "surname": surname.value
+      
        
       }
       push_to_firebase(data);
